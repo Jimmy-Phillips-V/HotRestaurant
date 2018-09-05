@@ -14,20 +14,20 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
 ////////////////
-var availableTables = [{
+var availableTables = [
+    {
     routeName: "availableTables",
     name: "Yoda",
-    role: "Jedi Master",
-    age: 900,
-    forcePoints: 2000
-}]; //name of waiting person, UID, phone, date of res, email
+    phone: "555-555-5555",
+    ID: 'phone'
+    }
+]; //name of waiting person, UID, phone, date of res, email
 var waitingList = [
     {
-    routeName: "darthmaul",
-    name: "Darth Maul",
-    role: "Sith Lord",
-    age: 200,
-    forcePoints: 1200
+        routeName: "waitingList",
+        name: "Darth Maul",
+        phone: "555-555-5556",
+        ID: 'phone'
 }
 ]; 
 
@@ -35,11 +35,14 @@ var waitingList = [
 
 
 //name of waiting person, UID, phone, date of res, email
+app.get("/", function(req, res) {
+    res.sendFile(path.join(__dirname, "home.html"));
+  });
 app.get("/viewTables", function(req, res) {
-    res.sendFile(path.join(__dirname, "XXXXX.html"));
+    res.sendFile(path.join(__dirname, "tables.html"));
   });
 app.get("/makeRes", function(req, res) {
-    res.sendFile(path.join(__dirname, "XXXXX.html"));
+    res.sendFile(path.join(__dirname, "reserve.html"));
   });
   app.get("/api/:table", function(req, res) {
     var chosen = req.params.table;
@@ -49,8 +52,7 @@ app.get("/makeRes", function(req, res) {
    { 
         for (var i = 0; i < availableTables.length; i++) {
              return res.json(availableTables[i]);
-            
-        }
+                }
         return res.json(false);
     }
     else  if(chosen == "waitingList")
