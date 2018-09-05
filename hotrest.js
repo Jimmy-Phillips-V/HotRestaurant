@@ -40,24 +40,24 @@ var waitingList = [
 app.get("/", function(req, res) {
     res.sendFile(path.join(__dirname, "home.html"));
   });
-app.get("/viewTables", function(req, res) {
+app.get("/tables", function(req, res) {
     res.sendFile(path.join(__dirname, "tables.html"));
   });
-app.get("/makeRes", function(req, res) {
+app.get("/reserve", function(req, res) {
     res.sendFile(path.join(__dirname, "reserve.html"));
   });
   app.get("/api/:table", function(req, res) {
     var chosen = req.params.table;
   
     console.log(chosen);
-  if(chosen == "availableTables")
+  if(chosen == "tables")
    { 
         for (var i = 0; i < availableTables.length; i++) {
              return res.json(availableTables[i]);
                 }
         return res.json(false);
     }
-    else  if(chosen == "waitingList")
+    else  if(chosen == "waitlist")
     {
         for (var i = 0; i < waitingList.length; i++) {
              return res.json(waitingList[i]);
