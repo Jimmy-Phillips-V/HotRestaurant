@@ -15,49 +15,62 @@
 <body>
 
   <div class="container">
-    <div class="jumbotron">
+    <div class="jumbotron text-center">
       <h1>Hot Resturant Express</h1>
-      <h3>The Greatest Resturant around!</h3>
       <hr>
-      <a href="/add"><button class="btn btn-danger btn-lg"><span class="fa fa-plus"></span> Add New Character</button></a>
+
+      <h3>The Greatest Resturant around!</h3>
+      <a href="#">
+         <button class="btn btn-danger btn-lg"><span class="fa fa-plus"></span> Make Reservation</button>
+      </a>
+      <button class="btn btn-white btn-lg">Home</button>
     </div>
     <div class="row">
 
       <div class="col-12">
 
-        <div class="card mb-4">
-          <div class="card-header">
-            <h3><strong>Find a table</strong></h3>
-          </div>
-          <div class="card-body">
-            <input type="text" id="character-search" class="form-control">
-            <br>
-            <div class="text-right">
-              <button type="submit" class="btn btn-primary btn-md" id="search-btn"><span class="fa fa-search"></span> Search
-                Your Feelings. You know it is true.</button>
-
-            </div>
-          </div>
-        </div>
 
         <div class="card">
           <div class="card-header">
-            <h3><strong>Character Statistics</strong></h3>
+            <h3><strong>Current Reservations</strong></h3>
           </div>
-          <div class="card-body">
-            <h2 id="name">Yoda</h2>
-            <div id="stats">
-              <h3><strong>Role:</strong> <span id="role">Jedi Master</span></h3>
-              <h3><strong>Age:</strong> <span id="age">900</span></h3>
-              <h3><strong>Force Points:</strong> <span id="force-points">2000</span></h3>
-            </div>
-          </div>
+          <ul id="tableList" class="list-group">
+             <li class="list-group-item mt-4">
+                <h2>Table #1</h2>
+                <hr>
+                <h2>ID: afhaque89</h2>
+                <h2>Name: Ahmed</h2>
+                <h2>Email: ahmed@example.com</h2>
+                <h2>Phone: 000-000-0000</h2>
+            </li></ul> 
         </div>
+        <br>
+        <div class="card">
+            <div class="card-header">
+              <h3><strong>Waiting List</strong></h3>
+            </div>
+            <ul id="tableList" class="list-group">
+               <li class="list-group-item mt-4">
+                 
+              </li></ul> 
+          </div>
+          
       </div>
     </div>
+    <footer class="footer mt-4">
+         <div class="container">
+           <p>Control Panel</p>
+           <p><a href="#" id="clear">Clear Table</a> | <a href="#">API Table Link</a> | <a href="#">API
+               Wait List</a>
+         </div>
+       </footer>
   </div>
 
+
   <script type="text/javascript">
+   var guests = [];
+   
+
     $("#search-btn").on("click", function() {
       var searchedCharacter = $("#character-search").val().trim();
 
