@@ -68,6 +68,22 @@ app.get("/reserve", function(req, res) {
     
   });
 
+// Create New reservation - takes in JSON input
+app.post("/api/reserve", function(req, res) {
+    // req.body hosts is equal to the JSON post sent from the user
+    // This works because of our body-parser middleware
+    var newReservation = req.body;
+  
+    // Using a RegEx Pattern to remove spaces from newReservation
+    // You can read more about RegEx Patterns later https://www.regexbuddy.com/regex.html
+    newReservation.routeName = newReservation.name.replace(/\s+/g, "").toLowerCase();
+  
+    console.log(newReservation);
+  
+    characters.push(newReservation);
+  
+    res.json(newReservation);
+  });
 app.listen(PORT, function() {
     console.log("App listening on PORT " + PORT);
   });
