@@ -14,8 +14,27 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
 ////////////////
-var availableTables = []; //name of waiting person, UID, phone, date of res, email
-var waitingList = []; //name of waiting person, UID, phone, date of res, email
+var availableTables = [{
+    routeName: "availableTables",
+    name: "Yoda",
+    role: "Jedi Master",
+    age: 900,
+    forcePoints: 2000
+}]; //name of waiting person, UID, phone, date of res, email
+var waitingList = [
+    {
+    routeName: "darthmaul",
+    name: "Darth Maul",
+    role: "Sith Lord",
+    age: 200,
+    forcePoints: 1200
+}
+]; 
+
+
+
+
+//name of waiting person, UID, phone, date of res, email
 app.get("/viewTables", function(req, res) {
     res.sendFile(path.join(__dirname, "XXXXX.html"));
   });
@@ -29,19 +48,16 @@ app.get("/makeRes", function(req, res) {
   if(chosen == "availableTables")
    { 
         for (var i = 0; i < availableTables.length; i++) {
-            if (chosen === availableTables[i].routeName) {
-            return res.json(availableTables[i]);
-            }
+             return res.json(availableTables[i]);
+            
         }
         return res.json(false);
     }
     else  if(chosen == "waitingList")
     {
         for (var i = 0; i < waitingList.length; i++) {
-            if (chosen === waitingList[i].routeName) {
-            return res.json(waitingList[i]);
-                }
-            }
+             return res.json(waitingList[i]);
+               }
         return res.json(false);
     }
     return res.json(false);
