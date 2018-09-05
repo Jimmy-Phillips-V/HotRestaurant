@@ -78,21 +78,45 @@
 
       console.log(newReservation);
 
-      // $.post("/api/tables", newReservation,
-      //   function(data) {
-      //     // If a table is available... tell user they are booked.
-      //     if (data) {
-      //       alert("Yay! You are officially booked!");
-      //     }
-      //     // If a table is available... tell user they on the waiting list.
-      //     else {
-      //       alert("Sorry you are on the wait list");
-      //     }
-      //     // Clear the form when submitting
-      //     $("#reserve-name").val("");
-      //     $("#reserve-phone").val("");
-      //     $("#reserve-email").val("");
-      //     $("#reserve-unique-id").val("");
-      //   });
+      $.post("/api/tables", newReservation,
+        function(data) {
+          // If a table is available... tell user they are booked.
+          if (data) {
+            alert("Yay! You are officially booked!");
+          }
+          // If a table is available... tell user they on the waiting list.
+          else {
+            alert("Sorry you are on the wait list");
+          }
+          // Clear the form when submitting
+          $("#reserve-name").val("");
+          $("#reserve-phone").val("");
+          $("#reserve-email").val("");
+          $("#reserve-unique-id").val("");
+        });
+
+        
     });
+    function handleRequest(req, res) {
+
+        // Saving the request data as a variable
+        var requestData = "";
+
+        // When the server receives data...
+        req.on("data", function(data) {
+          console.log(data);
+          requestData += data;
+        });
+
+        // When the request has ended...
+        req.on("end", function() {
+          // Log (server-side) the request method, as well as the data received!
+          var str = "";
+          
+          res.writeHead(200,{"Content-Type":"text/html"})
+          res.end(str);
+        });
+
+}
+
 </script>
