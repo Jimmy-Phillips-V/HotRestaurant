@@ -21,16 +21,18 @@ var availableTables = [
     phone: "555-555-5555",
     ID: 'phone'
     }
-]; //name of waiting person, UID, phone, date of res, email
+]; 
+////////////////////////////////
+
 var waitingList = [
     {
         routeName: "waitingList",
         name: "Darth Maul",
         phone: "555-555-5556",
         ID: 'phone'
-}
+    }
 ]; 
-
+//////////////////////////////////
 
 
 
