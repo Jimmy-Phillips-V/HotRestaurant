@@ -9,7 +9,10 @@
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
   <script src="https://code.jquery.com/jquery.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
-
+  <style> 
+  li{
+    list-style-type: none;    
+  }</style>
 </head>
 
 <body>
@@ -33,7 +36,7 @@
           <div class="card-header">
             <h3><strong>Current Reservations</strong></h3>
           </div>
-          <ul id="tableList" class="list-group ">
+          <ul id="tableReserve" class="list-group ">
     
           </ul> 
         </div>
@@ -42,7 +45,7 @@
             <div class="card-header">
               <h3><strong>Waiting List</strong></h3>
             </div>
-            <ul id="tableList" class="list-group">
+            <ul id="tableWait" class="list-group">
                <li class="list-group-item mt-4">
                  
               </li></ul> 
@@ -61,28 +64,37 @@
   <script type="text/javascript">
     $(document).ready(function(){
         getReserved();
+        getWaitList();
     })
 function getReserved(){
     $.get("/api/tables/reserved", function(data) {
   
     }).then(function(data){
-      makeReservedRows(data);
+      makeRows(data,"#tableReserve");
+    })
+}
+function getWaitList(){
+    $.get("/api/tables/waitlist", function(data) {
+  
+    }).then(function(data){
+      makeRows(data,"#tableWait");
     })
 }
 
-function makeReservedRows(data){
+function makeRows(data,destination){
     var str = "";
     
      for(guest in data){
        console.log(data[guest])
        str+="<li class=card-body>"
-       str+= "<h2>Id: "+data[guest].customerID+"</h2>";
-       str+= "<h2>Name: "+data[guest].name+"</h2>";
-       str+= "<h2>Phone: "+data[guest].phoneNumber+"</h2>";
-       str+= "<h2>Email: "+data[guest].customerEmail+"</h2>";
+       str+= "<h2>Table #"+(parseInt(guest)+1)+"</h2>"
+       str+= "<h2><strong>ID:</strong> "+data[guest].customerID+"</h2>";
+       str+= "<h2><strong>Name</strong>: "+data[guest].name+"</h2>";
+       str+= "<h2><strong>Phone:</strong> "+data[guest].phoneNumber+"</h2>";
+       str+= "<h2><strong>Email:</strong> "+data[guest].customerEmail+"</h2>";
        str+="</li>";
      }
-     $("#tableList").html(str);
+     $(destination).html(str);
 
         
    }

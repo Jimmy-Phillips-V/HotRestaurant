@@ -17,9 +17,10 @@ app.use(bodyParser.json());
 var availableTables = [
     {
     routeName: "availableTables",
+    customerEmail: "yoda@yahoo.com",
     name: "Yoda",
-    phone: "555-555-5555",
-    ID: 'phone'
+    phoneNumber: "555-555-5555",
+    customerID: 'phone'
     }
 ]; 
 ////////////////////////////////
@@ -27,9 +28,10 @@ var availableTables = [
 var waitingList = [
     {
         routeName: "waitingList",
+        customerEmail: "darthMaulin@gmail.com",
         name: "Darth Maul",
-        phone: "555-555-5556",
-        ID: 'phone'
+        phoneNumber: "555-555-5556",
+        customerID: '1231551'
     }
 ]; 
 //////////////////////////////////
