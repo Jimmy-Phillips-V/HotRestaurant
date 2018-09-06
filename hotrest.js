@@ -46,7 +46,16 @@ app.get("/tables", function(req, res) {
 app.get("/reserve", function(req, res) {
     res.sendFile(path.join(__dirname, "reserve.html"));
   });
-  app.get("/api/:table", function(req, res) {
+app.get("/api/tables/:table", function(req, res) {
+    if(req.params.table==="reserved"){
+        res.json(availableTables)
+    }
+    else if(req.params.table==="waitlist"){
+        res.json(waitingList)
+    }
+});
+
+app.get("/api/:table", function(req, res) {
     var chosen = req.params.table;
   
     console.log(chosen);
@@ -67,7 +76,7 @@ app.get("/reserve", function(req, res) {
          // return res.json(false);
      }
      return res.json(false);
-
+});
 // Create New reservation - takes in JSON input
 app.post("/api/reserve", function(req, res) {
     // req.body hosts is equal to the JSON post sent from the user
@@ -81,7 +90,6 @@ app.post("/api/reserve", function(req, res) {
   
     console.log(newReservation);
   
-
     // need a way of checking if there are 
     // 5 tables full 
     availableTables.push(newReservation);

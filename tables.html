@@ -59,29 +59,34 @@
 
 
   <script type="text/javascript">
-
+    $(document).ready(function(){
+        getReserved();
+    })
 function getReserved(){
-    $.get("/api/tables", function(data) {
-      if(data){return data;}
-    });
+    $.get("/api/tables/reserved", function(data) {
+  
+    }).then(function(data){
+      makeReservedRows(data);
+    })
 }
 
-function makeReservedRows(){
-     var guests = getReserved();
-     for(guest in guests){
-       var str = "";
-       str+="<li>"
+function makeReservedRows(data){
+    var str = "";
+    
+     for(guest in data){
+       console.log(guest)
+       str+="<li class=card-body>"
        str+= "<h2>Id: "+guest.customerID+"</h2>";
        str+= "<h2>Name: "+guest.name+"</h2>";
        str+= "<h2>Phone: "+guest.phoneNumber+"</h2>";
        str+= "<h2>Email: "+guest.customerEmail+"</h2>";
        str+="</li>";
-       $("#tableList").html(str);
      }
+     $("#tableList").html(str);
+
         
    }
 
-    makeReservedRows();
   </script>
 </body>
 
