@@ -50,23 +50,23 @@ app.get("/reserve", function(req, res) {
     var chosen = req.params.table;
   
     console.log(chosen);
-  if(chosen == "tables")
-   { 
-        for (var i = 0; i < availableTables.length; i++) {
-             return res.json(availableTables[i]);
-                }
-        return res.json(false);
-    }
-    else  if(chosen == "waitlist")
+    if(chosen == "tables")
     {
-        for (var i = 0; i < waitingList.length; i++) {
-             return res.json(waitingList[i]);
-               }
-        return res.json(false);
-    }
-    return res.json(false);
-    
-  });
+     return res.json(availableTables);
+         // for (var i = 0; i < availableTables.length; i++) {
+         //      return res.json(availableTables);
+         //         }
+         // return res.json(false);
+     }
+     else  if(chosen == "waitlist")
+     {
+         return res.json(waitingList);
+         // for (var i = 0; i < waitingList.length; i++) {
+         //      return res.json(waitingList[i]);
+         //        }
+         // return res.json(false);
+     }
+     return res.json(false);
 
 // Create New reservation - takes in JSON input
 app.post("/api/reserve", function(req, res) {
