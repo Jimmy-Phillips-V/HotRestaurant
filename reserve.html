@@ -17,7 +17,7 @@
       <h2 class="text-center">Make your reservation</h2>
       <br>
       <div class="text-center">
-        <a href="/tables"><button class="btn btn-lg btn-primary"><span class="fa fa-list-alt"></span> View Tables</button></a>
+        <a href="/tables"><button class="btn btn-lg btn-primary "><span class="fa fa-list-alt"></span> View Tables</button></a>
         <a href="/"><button class="btn btn-lg btn-default"><span class="fa fa-home"></span></button></a>
       </div>
     </div>
@@ -70,7 +70,7 @@
       event.preventDefault();
       // Here we grab the form elements
       var newReservation = {
-        customerName: $("#reserve-name").val().trim(),
+        name: $("#reserve-name").val().trim(),
         phoneNumber: $("#reserve-phone").val().trim(),
         customerEmail: $("#reserve-email").val().trim(),
         customerID: $("#reserve-unique-id").val().trim()
@@ -78,7 +78,7 @@
 
       console.log(newReservation);
 
-      $.post("/api/tables", newReservation,
+      $.post("/api/reserve", newReservation,
         function(data) {
           // If a table is available... tell user they are booked.
           if (data) {
