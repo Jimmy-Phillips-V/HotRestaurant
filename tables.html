@@ -74,12 +74,12 @@ function makeReservedRows(data){
     var str = "";
     
      for(guest in data){
-       console.log(guest)
+       console.log(data[guest])
        str+="<li class=card-body>"
-       str+= "<h2>Id: "+guest.customerID+"</h2>";
-       str+= "<h2>Name: "+guest.name+"</h2>";
-       str+= "<h2>Phone: "+guest.phoneNumber+"</h2>";
-       str+= "<h2>Email: "+guest.customerEmail+"</h2>";
+       str+= "<h2>Id: "+data[guest].customerID+"</h2>";
+       str+= "<h2>Name: "+data[guest].name+"</h2>";
+       str+= "<h2>Phone: "+data[guest].phoneNumber+"</h2>";
+       str+= "<h2>Email: "+data[guest].customerEmail+"</h2>";
        str+="</li>";
      }
      $("#tableList").html(str);
