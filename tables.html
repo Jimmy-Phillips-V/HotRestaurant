@@ -66,8 +66,27 @@
 
 
   <script type="text/javascript">
-   var guests = [];
-   
+
+function getReserved(){
+    $.get("/api/tables", function(data) {
+      if(data){return data;}
+    });
+}
+
+function makeReservedRows(){
+     var guests = getReserved();
+     for(guest in guests){
+       var str = "";
+       str+="<li>"
+       str+= "<h2>Id: "+guest.customerID+"</h2>";
+       str+= "<h2>Name: "+guest.name+"</h2>";
+       str+= "<h2>Phone: "+guest.phoneNumber+"</h2>";
+       str+= "<h2>Email: "+guest.customerEmail+"</h2>";
+       str+="</li>";
+       $("#tableList").append(str);
+     }
+        
+   }
 
     
   </script>
