@@ -73,6 +73,7 @@ app.post("/api/reserve", function(req, res) {
     // req.body hosts is equal to the JSON post sent from the user
     // This works because of our body-parser middleware
     var newReservation = req.body;
+
   
     // Using a RegEx Pattern to remove spaces from newReservation
     // You can read more about RegEx Patterns later https://www.regexbuddy.com/regex.html
@@ -80,7 +81,10 @@ app.post("/api/reserve", function(req, res) {
   
     console.log(newReservation);
   
-    characters.push(newReservation);
+
+    // need a way of checking if there are 
+    // 5 tables full 
+    availableTables.push(newReservation);
   
     res.json(newReservation);
   });
