@@ -34,14 +34,7 @@
             <h3><strong>Current Reservations</strong></h3>
           </div>
           <ul id="tableList" class="list-group ">
-            <!-- <li class="list-group-item mt-4 border my-3 mx-3">
-                <h2>Table #1</h2>
-                <hr>
-                <h2>ID: agoldmsith</h2>
-                <h2>Name: Aaron</h2>
-                <h2>Email: aargoldsmith@gmail.com</h2>
-                <h2>Phone: 510-555-0000</h2>
-            </li> -->
+    
           </ul> 
         </div>
         <br>
@@ -66,8 +59,34 @@
 
 
   <script type="text/javascript">
+<<<<<<< HEAD
    var guests = [];
 
+=======
+
+function getReserved(){
+    $.get("/api/tables", function(data) {
+      if(data){return data;}
+    });
+}
+
+function makeReservedRows(){
+     var guests = getReserved();
+     for(guest in guests){
+       var str = "";
+       str+="<li>"
+       str+= "<h2>Id: "+guest.customerID+"</h2>";
+       str+= "<h2>Name: "+guest.name+"</h2>";
+       str+= "<h2>Phone: "+guest.phoneNumber+"</h2>";
+       str+= "<h2>Email: "+guest.customerEmail+"</h2>";
+       str+="</li>";
+       $("#tableList").append(str);
+     }
+        
+   }
+
+    
+>>>>>>> 80e02f721af69570e417ee8b437e9e5445cd5a55
   </script>
 </body>
 
